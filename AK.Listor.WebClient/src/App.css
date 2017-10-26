@@ -1,0 +1,175 @@
+/*******************************************************************************************************************************
+ * AK.Listor.WebClient.App.css
+ * Copyright © 2017 Aashish Koirala <http://aashishkoirala.github.io>
+ *
+ * This file is part of Aashish Koirala's Listor.
+ *
+ * Listor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Listor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Listor.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *******************************************************************************************************************************/
+
+.clear-left {
+  clear: left;
+}
+
+.clear-right {
+  clear: right;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.btn-circle {
+  background-color: #444444;
+  color: lightgrey;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 16px;
+  font-family: 'Glyphicons Halflings';
+  margin-right: 2px;
+}
+
+.btn-circle:hover {
+  background-color: #222222;
+}
+
+.btn-circle:disabled {
+  background-color: #aaaaaa;
+}
+
+.btn-add:after {
+  content: "\002b";
+}
+
+.btn-yes:after {
+  content: "\e013";
+}
+
+.btn-no:after {
+  content: "\e014";
+}
+
+.btn-square {
+  background-color: transparent;
+  color: black;
+  border: 1px solid transparent;
+  border-radius: 1px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  font-size: 22px;
+  font-family: 'Glyphicons Halflings';
+  margin-right: 2px;
+}
+
+.btn-square:hover {
+  color: darkblue;
+}
+
+.btn-square:disabled {
+  color: lightgrey;
+}
+
+.btn-delete:after {
+  content: "\e020"
+}
+
+.btn-home {
+  font-size: 20px;
+}
+
+.btn-home:after {
+  content: "\e021";
+}
+
+.btn-modal-close {
+  color: #aaa;
+  background-color: transparent;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  border: 0px;
+  padding: 0px;
+}
+
+.btn-modal-close:hover, .btn-modal-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-modal-close:after {
+  content: "\00d7";
+}
+
+.left-panel {
+  background-color: lightgrey;
+  color: black;
+  padding: 5px 20px 5px 30px;
+}
+
+.left-panel hr {
+  border: 0;
+  height: 0; /* Firefox... */
+  box-shadow: 0 0 10px 1px black;
+}
+
+.left-panel hr:after {
+  content: "\00a0";
+}
+
+.left-panel-status {
+  padding-left: 30px;
+  padding-top: 30px;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.app-title {
+  padding-top: 10px;
+  font-size: 40px;
+  font-family: tahoma, arial;
+  float: left;
+}
+
+.app-title-small {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 5px;
+  padding-left: 5px;
+  border-left: 1px solid black;
+}
+
+.title-bar-small {
+  background-color: darkgrey;
+  height: 45px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.container-small {
+  padding: 10px;
+}

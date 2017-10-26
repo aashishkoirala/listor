@@ -1,0 +1,139 @@
+﻿@*******************************************************************************************************************************
+ * AK.Listor.Views.Layout
+ * Copyright © 2017 Aashish Koirala <http://aashishkoirala.github.io>
+ *
+ * This file is part of Aashish Koirala's Listor.
+ *
+ * Listor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Listor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Listor.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *******************************************************************************************************************************@
+
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>Listor</title>
+    <style type="text/css">
+        .full-width {
+            width: 100%;
+        }
+        .container {
+            margin: 0 auto;
+            width: 100%;
+            font-family: arial;
+            color: black;
+            font-size: 14px;
+        }
+        @@media (min-width: 768px) {
+            .container {
+                margin: 40px auto;
+                width: 450px;
+                border: 1px solid black;
+                border-radius: 4px;
+                padding: 25px;
+                box-shadow: 10px 10px 2px darkgrey;
+            }
+         }
+        .left-field {
+            display: inline-block;
+            width: 20%;
+            padding: 1px;
+            text-align: right;
+        }
+        .right-field {
+            display: inline-block;
+            width: 75%;
+            padding: 1px;
+            text-align: left;
+        }
+        .app-title {
+            padding-top: 10px;
+            font-size: 40px;
+            font-family: tahoma, arial;
+        }
+        #error {
+            color: red;
+        }
+        hr {
+            border: 0;
+            height: 0; /* Firefox... */
+            box-shadow: 0 0 10px 1px black;
+        }
+        hr:after {
+            content: "\00a0";
+        }
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+            margin-bottom: 5px;
+        }
+        input[type='text'], input[type='password'] {
+            width: 95%;
+            font-size: 14px;
+            border: 1px solid lightgrey;
+            border-radius: 2px;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        input[type='text']:focus, input[type='password']:focus {
+            outline: none;
+        }
+        button {
+            background: darkgrey;
+            color: black;
+            border: 2px solid black;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: black;
+            color: white;
+        }
+        button:disabled {
+            background: lightgrey;
+            border: 2px solid transparent;
+            color: darkgrey;
+        }
+    </style>
+    <script type="text/javascript">
+        function init() {
+            window.listorState = window.listorState || {};
+            window.listorState.error = '';
+            updateView();
+        }
+        function renderError() {
+            document.getElementById('error').innerText = window.listorState.error;
+        }
+    </script>
+</head>
+<body onload="init()">
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div class="full-width">
+    <div class="container">
+        <div class="app-title">listor</div>
+        <hr/>
+        <br/>
+        @RenderBody()
+        <br /><br />
+        <span id="error"></span>
+    </div>
+</div>
+</body>
+</html>

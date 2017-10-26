@@ -1,0 +1,69 @@
+﻿@*******************************************************************************************************************************
+ * AK.Listor.Views.Login
+ * Copyright © 2017 Aashish Koirala <http://aashishkoirala.github.io>
+ *
+ * This file is part of Aashish Koirala's Listor.
+ *
+ * Listor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Listor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Listor.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *******************************************************************************************************************************@
+
+@using AK.Listor.DataContracts
+@model Login
+
+@{
+    Layout = "_Layout";
+}
+
+<script type="text/javascript">
+    function updateView() {
+        var error = '@Model.ErrorMessage';
+        var userName = document.getElementById('UserName').value;
+        var password = document.getElementById('Password').value;
+        var disabled = userName.trim() === '' || password.trim() === '';
+        document.getElementById('submitButton').disabled = disabled;
+        document.getElementById('RememberMe').disabled = disabled;
+        document.getElementById('error').innerText = error;
+    }
+</script>
+@using (Html.BeginForm("Login", "Account", null, FormMethod.Post, true, null))
+{
+    <div class="left-field">
+        @Html.LabelFor(x => x.UserName, "Username")
+    </div>
+    <div class="right-field">
+        @Html.EditorFor(x => x.UserName, new { htmlAttributes = new { autofocus = "autofocus", onkeyup = "updateView()" }} )
+    </div>
+    <br/>
+    <div class="left-field">
+        @Html.LabelFor(x => x.Password, "Password")
+    </div>
+    <div class="right-field">
+        @Html.PasswordFor(x => x.Password, new { onkeyup = "updateView()" })
+    </div>
+    <br/>
+    <div class="left-field"></div>
+    <div class="right-field">
+        @Html.CheckBoxFor(x => x.RememberMe)
+        @Html.LabelFor(x => x.RememberMe, "Remember Me")
+    </div>
+    <br/><br/>
+    @Html.HiddenFor(x => x.ReturnUrl)
+    <div class="left-field"></div>
+    <div class="right-field">
+        <button type="submit" id="submitButton">Sign In</button>
+    </div>
+    <br /><br /><br/>
+    <text>Don't have an account? @Html.ActionLink("Sign Up", "Register") now - all you need to do is pick a username and password.</text>
+}

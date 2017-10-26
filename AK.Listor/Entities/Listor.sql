@@ -1,0 +1,25 @@
+CREATE USER [listor] FOR LOGIN [listor] WITH DEFAULT_SCHEMA=[dbo]
+GO
+
+ALTER ROLE [db_owner] ADD MEMBER [listor]
+GO
+
+CREATE TABLE [User] (
+	[Id] [int] IDENTITY(1, 1) NOT NULL CONSTRAINT PK_User PRIMARY KEY,
+	[Name] [nvarchar](50) NOT NULL,
+	[Password] [varbinary](40) NOT NULL
+)
+GO
+
+CREATE TABLE [List] (
+	[Id] [int] IDENTITY(1, 1) NOT NULL CONSTRAINT PK_List PRIMARY KEY,
+	[Name] [nvarchar](100) NOT NULL
+)
+GO
+
+CREATE TABLE [UserList] (
+	[Id] [int] IDENTITY(1, 1) NOT NULL CONSTRAINT PK_UserList PRIMARY KEY,
+	[UserId] [int] NOT NULL CONSTRAINT [FK_UserList_User] FOREIGN KEY REFERENCES [User] ([Id]) ON DELETE CASCADE,
+	[ListId] [int] NOT NULL CONSTRAINT [FK_UserList_List] FOREIGN KEY REFERENCES [List] ([Id]) ON DELETE CASCADE
+)
+GO

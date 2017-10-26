@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "AK.Listor": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://dev.loc:5858/"
+    }
+  }
+}

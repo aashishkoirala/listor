@@ -1,0 +1,103 @@
+﻿@*******************************************************************************************************************************
+ * AK.Listor.Views.Register
+ * Copyright © 2017 Aashish Koirala <http://aashishkoirala.github.io>
+ *
+ * This file is part of Aashish Koirala's Listor.
+ *
+ * Listor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Listor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Listor.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *******************************************************************************************************************************@
+
+@using AK.Listor.DataContracts
+@model Register
+
+@{
+    Layout = "_Layout";
+}
+
+<script type="text/javascript">
+    var isUserNameAvailableKnown = false;
+    var isUserNameAvailable = false;
+
+    function updateView() {
+        var error = '@Model.ErrorMessage';
+        var enabled = false;
+
+        if (isUserNameAvailableKnown && !isUserNameAvailable) {
+            error = 'That username is not available.';
+        } else if (isUserNameAvailable) {
+            var password = document.getElementById('Password').value;
+            var retypePassword = document.getElementById('RetypePassword').value;
+            if (password.trim() !== '' && retypePassword.trim() !== '') {
+                if (password !== retypePassword) error = 'Passwords do not match.';
+                else if (password.length < 12) error = 'Password must be at least 12 characters.';
+                else enabled = true;
+            }
+        }
+        document.getElementById('submitButton').disabled = !enabled;
+        document.getElementById('error').innerText = error;
+    }
+
+    function onUserNameBlur() {
+        isUserNameAvailableKnown = false;
+        isUserNameAvailable = false;
+        let userName = document.getElementById('UserName').value;
+        if (userName.trim() === '') {
+            updateView();
+            return;
+        }
+        fetch('../api/user/availability/' + userName).then(function(response) {
+            if (response.ok) return response.json();
+            else throw response;
+        }).then(function(available) {
+            isUserNameAvailableKnown = true;
+            isUserNameAvailable = available;
+            updateView();
+        }).catch(function() {
+            isUserNameAvailableKnown = true;
+            isUserNameAvailable = false;
+            updateView();
+        });
+    }
+</script>
+@using (Html.BeginForm("Register", "Account", null, FormMethod.Post, true, null))
+{
+    <div class="left-field">
+        @Html.LabelFor(x => x.UserName, "Username")
+    </div>
+    <div class="right-field">
+        @Html.EditorFor(x => x.UserName, new { htmlAttributes = new { maxlength = 20, onblur = "onUserNameBlur()", autofocus = "autofocus" }})
+    </div>
+    <br />
+    <div class="left-field">
+        @Html.LabelFor(x => x.Password, "Password")
+    </div>
+    <div class="right-field">
+        @Html.PasswordFor(x => x.Password, new { onkeyup = "updateView()" })
+    </div>
+    <br />
+    <div class="left-field">
+        @Html.LabelFor(x => x.RetypePassword, "Confirm")
+    </div>
+    <div class="right-field">
+        @Html.PasswordFor(x => x.RetypePassword, new { onkeyup = "updateView()" })
+    </div>
+    <br /><br />
+    <div class="left-field"></div>
+    <div class="right-field">
+        <button type="submit" id="submitButton">Sign Up</button>
+    </div>
+    <br /><br /><br />
+    <text>Already have an account? @Html.ActionLink("Sign In", "Login") to get in.</text>
+}
