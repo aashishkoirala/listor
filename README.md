@@ -1,3 +1,3 @@
-### aashishkoirala.github.io/todo
+### aashishkoirala.github.io/listor
 
-This repo just hosts the GitHub page for this repo. Go to [aashishkoirala.github.io/todo](http://aashishkoirala.github.io/todo) to actually see the GitHub page.
+This repo just hosts the GitHub page for this repo. Go to [aashishkoirala.github.io/listor](http://aashishkoirala.github.io/listor) to actually see the GitHub page.
