@@ -67,6 +67,7 @@ namespace AK.Listor
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseMiddleware(typeof(HttpsVerifier));
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
             else app.UseRewriter(new RewriteOptions().AddRedirectToHttps());
             app.UseAuthentication();
