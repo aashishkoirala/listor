@@ -1,6 +1,11 @@
-Write-Host "Building web client..."
+$ErrorActionPreference = "Stop"
 Push-Location AK.Listor.WebClient
+Write-Host "Installing web client dependencies..."
+npm install
+If ($LastExitCode -Ne 0) { Throw "npm install failed." }
+Write-Host "Building web client..."
 npm run build
+If ($LastExitCode -Ne 0) { Throw "npm run build failed." }
 Pop-Location
 Write-Host "Deleting existing client files..."
 [System.IO.Directory]::GetFiles("AK.Listor\Client", "*.*") | Where-Object {
@@ -28,3 +33,4 @@ Write-Host "Copying new files..."
 }
 Write-Host "Building application..."
 dotnet build
+If ($LastExitCode -Ne 0) { Throw "dotnet build failed." }

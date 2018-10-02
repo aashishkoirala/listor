@@ -12,5 +12,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Client\**" />
     <EmbeddedResource Remove="Client\.gitignore" />
+    <EmbeddedResource Remove="Client\*.json" />
   </ItemGroup>
 </Project>
